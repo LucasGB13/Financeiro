@@ -74,7 +74,10 @@ async function start(){
  const config=window.APP_CONFIG||{};
  if(!config.supabaseUrl||!config.supabaseAnonKey||!window.supabase?.createClient){setupMessage('A configuração do banco ainda não foi concluída.');$('#googleLogin').disabled=true;return}
  client=window.supabase.createClient(config.supabaseUrl,config.supabaseAnonKey);bindForms();
- const {data:{session},error}=await client.auth.getSession();if(error){setupMessage('Não foi possível iniciar a sessão.');return}if(session)setSignedIn(session.user);else setupMessage('');
+ const {data:{session},error}=await client.auth.getSession();if(error){setupMessage('Não foi possível iniciar a sessão.');return}if(session)setSignedIn(session.user);else{
+  try{const response=await fetch(`${config.supabaseUrl}/auth/v1/settings`,{headers:{apikey:config.supabaseAnonKey}}),settings=await response.json();if(!response.ok||!settings.external?.google){setupMessage('O projeto está conectado. Para liberar o acesso, ative o provedor Google no painel do Supabase.');$('#googleLogin').disabled=true}else setupMessage('')}
+  catch{setupMessage('Não consegui verificar a configuração do projeto. Confira sua conexão com a internet.');$('#googleLogin').disabled=true}
+ }
  client.auth.onAuthStateChange((_event,newSession)=>{if(newSession)setSignedIn(newSession.user);else{currentUser=null;state=emptyState();$('#authScreen').hidden=false;$('.app-shell').hidden=true}});
 }
 start();
