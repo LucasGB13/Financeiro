@@ -22,8 +22,25 @@ async function loadCloudData(){try{
  state.transactions=(transactions.data||[]).map(t=>({id:t.id,description:t.description,amount:Number(t.amount),type:t.type,category:t.category,date:t.date}));
  state.bills=(bills.data||[]).map(b=>({id:b.id,name:b.name,amount:Number(b.amount),dueDate:b.due_date,remaining:b.remaining,icon:b.icon}));
  if(plan.data)state.plan={salary:Number(plan.data.salary),percent:plan.data.percent,saved:Number(plan.data.saved)};else state.plan={salary:0,percent:10,saved:0};
+ if(!state.transactions.length&&!state.bills.length&&!plan.data&&await offerLegacyImport())return loadCloudData();
  render();
  }catch(error){console.error(error);toast('Não foi possível carregar seus dados. Confira a configuração do banco.')}
+}
+async function offerLegacyImport(){
+ let old;try{old=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')}catch{return false}
+ if(!old||(!old.transactions?.length&&!old.bills?.length&&!old.plan?.salary&&!old.plan?.saved))return false;
+ const marker=`meuFinanceiro.imported.${currentUser.id}`;if(localStorage.getItem(marker))return false;
+ localStorage.setItem(marker,'offered');
+ const count=(old.transactions?.length||0)+(old.bills?.length||0)+(old.plan?.salary||old.plan?.saved?1:0);
+ if(!window.confirm(`Encontrei dados antigos salvos neste navegador (${old.transactions?.length||0} lançamentos, ${old.bills?.length||0} faturas${old.plan?.salary||old.plan?.saved?' e sua meta':''}). Quer importar uma cópia para a conta Google ${currentUser.email||'conectada'}? Nada será apagado deste dispositivo.`))return false;
+ try{
+  const transactions=(old.transactions||[]).map(({id,...t})=>({...t,user_id:currentUser.id}));
+  const bills=(old.bills||[]).map(({id,dueDate,...b})=>({...b,due_date:dueDate,user_id:currentUser.id}));
+  if(transactions.length){const result=await client.from('transactions').insert(transactions);if(result.error)throw result.error}
+  if(bills.length){const result=await client.from('bills').insert(bills);if(result.error)throw result.error}
+  if(old.plan?.salary||old.plan?.saved||old.plan?.percent){const result=await client.from('savings_plans').upsert({user_id:currentUser.id,salary:Number(old.plan.salary)||0,percent:Number(old.plan.percent)||0,saved:Number(old.plan.saved)||0},{onConflict:'user_id'});if(result.error)throw result.error}
+  localStorage.setItem(marker,'done');toast(`${count} itens importados. A cópia antiga continua neste dispositivo.`);return true;
+ }catch(error){localStorage.removeItem(marker);console.error(error);toast('A importação não foi concluída. Seus dados antigos continuam neste dispositivo.');return false}
 }
 async function persist(operation){try{const result=await operation();if(result?.error)throw result.error;await loadCloudData();return true}catch(error){console.error(error);toast('Não foi possível salvar. Seus dados continuam seguros; tente novamente.');return false}}
 function render(){
