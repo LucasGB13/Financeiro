@@ -9,6 +9,7 @@ Aplicativo financeiro responsivo com login Google e dados sincronizados por cont
 - Persistência em PostgreSQL para lançamentos, faturas e metas.
 - Políticas RLS por `auth.uid()` em todas as tabelas. Não desative RLS nem use chave `service_role` no navegador.
 - Configuração pública do cliente em `config.js`. A URL do projeto e a chave `anon`/`publishable` podem ser expostas no front-end; as políticas RLS são obrigatórias.
+- Planejamento mensal considera dois pagamentos quinzenais, contas e parcelas ativas, além de outras despesas e entradas lançadas. Contas marcadas como recorrentes continuam no cálculo mensal.
 
 ## Configuração necessária antes de usar dados reais
 
@@ -34,6 +35,8 @@ Hospede a pasta como site estático em HTTPS. GitHub Pages, Cloudflare Pages e N
 ## Privacidade e dados
 
 Cada tabela guarda `user_id` e aplica Row Level Security para que a pessoa autenticada só consiga ler e alterar linhas com seu próprio ID. Não compartilhe a mesma conta Google entre os dois usuários. Se o navegador encontrar dados do protótipo antigo, o aplicativo pergunta antes de copiar esses dados para a conta Google conectada; a cópia local não é apagada.
+
+O salário no planejamento é informado por pagamento quinzenal; o saldo e a meta de economia usam duas vezes esse valor como renda mensal. As contas cadastradas são descontadas automaticamente do saldo previsto. Registre em “Novo lançamento” apenas outras entradas e despesas para não contar uma conta duas vezes. Contas recorrentes sem fim podem ser marcadas no formulário próprio.
 
 ## Modo local antigo
 
