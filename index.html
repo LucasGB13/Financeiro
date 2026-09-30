@@ -14,6 +14,17 @@
   <title>Meu Financeiro</title>
 </head>
 <body>
+  <section class="auth-screen" id="authScreen" hidden>
+    <div class="auth-card">
+      <a class="brand auth-brand" href="#"><span class="brand-mark">m</span><span>meu<span class="brand-light"> financeiro</span></span></a>
+      <span class="panel-kicker">SEU ESPAÇO FINANCEIRO</span>
+      <h1>Seu dinheiro, com clareza.</h1>
+      <p class="auth-description">Entre com sua conta Google. Seus lançamentos ficam privados na sua conta.</p>
+      <button class="google-button" id="googleLogin"><span class="google-g">G</span> Continuar com Google</button>
+      <p class="auth-message" id="authMessage" role="status"></p>
+      <p class="auth-footnote">Você e seu pai usam contas separadas. Cada um vê apenas os próprios dados.</p>
+    </div>
+  </section>
   <main class="app-shell">
     <aside class="sidebar">
       <a class="brand" href="#inicio"><span class="brand-mark">m</span><span>meu<span class="brand-light"> financeiro</span></span></a>
@@ -26,7 +37,7 @@
       </nav>
       <div class="sidebar-bottom">
         <div class="safe-note"><span class="safe-icon">✳</span><strong>Seus dados, suas regras.</strong><span>Salvos neste dispositivo. Privacidade em primeiro lugar.</span></div>
-        <button class="profile-button" id="profileButton"><span class="avatar">M</span><span class="profile-copy"><strong>Meu espaço</strong><small>Finanças pessoais</small></span><span class="more">···</span></button>
+        <button class="profile-button" id="profileButton"><span class="avatar">M</span><span class="profile-copy"><strong>Meu espaço</strong><small id="accountEmail">Finanças pessoais</small></span><span class="more">···</span></button>
       </div>
     </aside>
 
@@ -53,8 +64,11 @@
 
   <dialog id="planDialog" class="form-dialog"><form method="dialog" id="planForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">SEU PLANEJAMENTO</span><h2>Definir meta mensal</h2><p class="dialog-intro">Escolha quanto gostaria de guardar do seu salário.</p><label>Salário mensal (R$)<input name="salary" type="number" min="0" step="0.01" placeholder="0,00" /></label><div class="field-row"><label>Percentual para guardar<input name="percent" type="number" min="0" max="100" step="1" placeholder="10" required /></label><label>Já guardei (R$)<input name="saved" type="number" min="0" step="0.01" placeholder="0,00" /></label></div><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar meta</button></div></form></dialog>
 
-  <dialog id="profileDialog" class="form-dialog"><form method="dialog" id="profileForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">SEU ESPAÇO</span><h2>Personalizar</h2><p class="dialog-intro">Um nome para dar boas-vindas e sua moeda.</p><label>Como quer ser chamado(a)?<input name="name" placeholder="Ex.: Lucas" maxlength="30" /></label><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar</button></div></form></dialog>
+  <dialog id="profileDialog" class="form-dialog"><form method="dialog" id="profileForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">SEU ESPAÇO</span><h2>Personalizar</h2><p class="dialog-intro">Um nome para dar boas-vindas e sua moeda.</p><label>Como quer ser chamado(a)?<input name="name" placeholder="Ex.: Lucas" maxlength="30" /></label><div class="dialog-actions"><button type="button" id="signOut" class="text-button">Sair da conta</button><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar</button></div></form></dialog>
   <div class="toast" id="toast" role="status"></div>
+  <script src="config.local.js"></script>
+  <script>window.APP_CONFIG = window.APP_CONFIG || {};</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
 </body>
 </html>
