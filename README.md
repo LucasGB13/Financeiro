@@ -10,6 +10,7 @@ Aplicativo financeiro responsivo com login Google e dados sincronizados por cont
 - Políticas RLS por `auth.uid()` em todas as tabelas. Não desative RLS nem use chave `service_role` no navegador.
 - Configuração pública do cliente em `config.js`. A URL do projeto e a chave `anon`/`publishable` podem ser expostas no front-end; as políticas RLS são obrigatórias.
 - Planejamento mensal considera dois pagamentos quinzenais, contas e parcelas ativas, além de outras despesas e entradas lançadas. Contas marcadas como recorrentes continuam no cálculo mensal.
+- A conta PicPay pode ser marcada como cartão de limite reutilizável. Cada uso registrado entra como despesa do mês; os outros cartões continuam como contas comuns.
 
 ## Configuração necessária antes de usar dados reais
 
