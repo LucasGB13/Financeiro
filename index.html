@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111714" />
+  <meta name="description" content="Sua vida financeira, clara em um só lugar." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Meu Financeiro</title>
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio"><span class="brand-mark">m</span><span>meu<span class="brand-light"> financeiro</span></span></a>
+      <div class="nav-caption">MENU</div>
+      <nav aria-label="Navegação principal">
+        <a class="nav-link active" href="#inicio"><span class="nav-icon">◫</span> Visão geral</a>
+        <a class="nav-link" href="#lancamentos"><span class="nav-icon">↗</span> Lançamentos</a>
+        <a class="nav-link" href="#faturas"><span class="nav-icon">▤</span> Faturas</a>
+        <a class="nav-link" href="#planejamento"><span class="nav-icon">◎</span> Planejamento</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="safe-note"><span class="safe-icon">✳</span><strong>Seus dados, suas regras.</strong><span>Salvos neste dispositivo. Privacidade em primeiro lugar.</span></div>
+        <button class="profile-button" id="profileButton"><span class="avatar">M</span><span class="profile-copy"><strong>Meu espaço</strong><small>Finanças pessoais</small></span><span class="more">···</span></button>
+      </div>
+    </aside>
+
+    <section class="main-area" id="inicio">
+      <header class="topbar"><div class="breadcrumbs">Meu espaço <span>/</span> <strong>Visão geral</strong></div><div class="top-actions"><span class="today" id="today"></span><button class="icon-button" id="privacyButton" aria-label="Ocultar valores" title="Ocultar valores">◉</button><button class="mobile-profile" aria-label="Perfil">M</button></div></header>
+      <div class="content">
+        <section class="welcome-row"><div><div class="eyebrow"><span class="status-dot"></span> SEU DINHEIRO EM DIA</div><h1>Bom dia<span class="comma">,</span> <span class="name" id="greetingName">você</span> <span class="wave">✳</span></h1><p class="subtitle">Uma visão tranquila para tomar boas decisões.</p></div><button class="primary-button" id="addTransaction"><span>＋</span> Novo lançamento</button></section>
+
+        <section class="balance-card" aria-label="Resumo do mês"><div class="balance-top"><div><span class="card-label">SALDO DO MÊS <span class="info-dot" title="Receitas menos despesas">i</span></span><div class="balance-amount sensitive" id="balance">R$ 0,00</div></div><div class="month-picker"><button id="prevMonth" aria-label="Mês anterior">‹</button><span id="monthLabel"></span><button id="nextMonth" aria-label="Próximo mês">›</button></div></div><div class="balance-divider"></div><div class="balance-bottom"><div class="balance-metric"><span class="metric-icon income-icon">↙</span><span><small>Entradas</small><strong class="sensitive" id="incomeTotal">R$ 0,00</strong></span></div><div class="balance-metric"><span class="metric-icon expense-icon">↗</span><span><small>Saídas</small><strong class="sensitive" id="expenseTotal">R$ 0,00</strong></span></div><div class="balance-metric balance-tip"><span class="tip-icon">✳</span><span><small>Seu ritmo</small><strong id="monthlyNote">Vamos começar?</strong></span></div></div><div class="balance-glow"></div></section>
+
+        <div class="overview-grid"><section class="panel savings-panel" id="planejamento"><div class="panel-heading"><div><span class="panel-kicker">PLANEJAMENTO</span><h2>Seu plano de guardar</h2></div><button class="text-button" id="editPlan">Editar plano <span>↗</span></button></div><div class="savings-body"><div class="savings-copy"><span class="muted">Meta deste mês</span><strong class="goal-value sensitive" id="goalValue">R$ 0,00</strong><span class="goal-detail" id="goalDetail">Defina sua meta e acompanhe seu progresso</span><div class="progress-track"><span class="progress-fill" id="savingsProgress"></span></div><div class="progress-labels"><span id="savedLabel">R$ 0 guardados</span><strong id="progressPercent">0%</strong></div><div class="suggestion" id="suggestion"><span class="suggestion-icon">✳</span><span>Um pequeno passo por mês faz diferença.</span></div></div><div class="donut-wrap"><div class="donut" id="savingsDonut"><div class="donut-center"><span>GUARDADO</span><strong id="donutPercent">0%</strong></div></div></div></div></section>
+
+        <section class="panel bills-panel" id="faturas"><div class="panel-heading"><div><span class="panel-kicker">DE OLHO</span><h2>Próximas faturas</h2></div><button class="text-button" id="addBill">＋ Adicionar</button></div><div class="bill-list" id="billList"></div><div class="empty-bills" id="emptyBills"><span class="empty-icon">▤</span><strong>Nenhuma fatura por aqui</strong><span>Adicione contas e parcelas para acompanhar quanto falta pagar.</span><button class="outline-button" id="emptyAddBill">Adicionar fatura <span>＋</span></button></div><div class="bills-footer"><span id="billsFooterText">Suas contas organizadas, sem surpresas.</span><a href="#faturas">Ver todas <span>→</span></a></div></section></div>
+
+        <section class="panel activity-panel" id="lancamentos"><div class="panel-heading activity-heading"><div><span class="panel-kicker">MOVIMENTAÇÕES</span><h2>Últimos lançamentos</h2></div><div class="activity-actions"><select id="categoryFilter" aria-label="Filtrar por categoria"><option value="all">Todas as categorias</option><option value="salary">Salário</option><option value="home">Moradia</option><option value="food">Alimentação</option><option value="transport">Transporte</option><option value="health">Saúde</option><option value="leisure">Lazer</option><option value="other">Outros</option></select><button class="text-button" id="viewAll">Ver todos <span>→</span></button></div></div><div class="table-wrap"><table><thead><tr><th>DESCRIÇÃO</th><th>CATEGORIA</th><th>DATA</th><th>VALOR</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table><div class="empty-transactions" id="emptyTransactions"><span>Seus lançamentos aparecem aqui.</span><button class="text-button" id="emptyAddTransaction">＋ Adicionar o primeiro</button></div></div></section>
+        <footer class="footer"><span>Feito para deixar sua vida financeira mais leve.</span><span><i></i> Privado por natureza</span></footer>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="transactionDialog" class="form-dialog"><form method="dialog" id="transactionForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">MOVIMENTAÇÃO</span><h2>Novo lançamento</h2><p class="dialog-intro">Registre uma entrada ou saída do seu mês.</p><label>Descrição<input name="description" placeholder="Ex.: Mercado, salário..." required maxlength="60" /></label><div class="field-row"><label>Valor (R$)<input name="amount" type="number" min="0.01" step="0.01" placeholder="0,00" required /></label><label>Tipo<select name="type"><option value="expense">Saída</option><option value="income">Entrada</option></select></label></div><div class="field-row"><label>Categoria<select name="category"><option value="salary">Salário</option><option value="home">Moradia</option><option value="food">Alimentação</option><option value="transport">Transporte</option><option value="health">Saúde</option><option value="leisure">Lazer</option><option value="other" selected>Outros</option></select></label><label>Data<input name="date" type="date" required /></label></div><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar lançamento</button></div></form></dialog>
+
+  <dialog id="billDialog" class="form-dialog"><form method="dialog" id="billForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">ACOMPANHAMENTO</span><h2>Adicionar fatura</h2><p class="dialog-intro">Acompanhe vencimentos e quanto falta pagar.</p><label>Nome da conta<input name="name" placeholder="Ex.: Cartão Nubank" required maxlength="50" /></label><div class="field-row"><label>Parcela mensal (R$)<input name="amount" type="number" min="0.01" step="0.01" placeholder="0,00" required /></label><label>Vencimento<input name="dueDate" type="date" required /></label></div><div class="field-row"><label>Parcelas restantes<input name="remaining" type="number" min="1" max="600" step="1" placeholder="1" required /></label><label>Ícone<select name="icon"><option value="▤">Cartão</option><option value="⌂">Casa</option><option value="◇">Carro</option><option value="✳">Outro</option></select></label></div><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar fatura</button></div></form></dialog>
+
+  <dialog id="planDialog" class="form-dialog"><form method="dialog" id="planForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">SEU PLANEJAMENTO</span><h2>Definir meta mensal</h2><p class="dialog-intro">Escolha quanto gostaria de guardar do seu salário.</p><label>Salário mensal (R$)<input name="salary" type="number" min="0" step="0.01" placeholder="0,00" /></label><div class="field-row"><label>Percentual para guardar<input name="percent" type="number" min="0" max="100" step="1" placeholder="10" required /></label><label>Já guardei (R$)<input name="saved" type="number" min="0" step="0.01" placeholder="0,00" /></label></div><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar meta</button></div></form></dialog>
+
+  <dialog id="profileDialog" class="form-dialog"><form method="dialog" id="profileForm"><button class="dialog-close" aria-label="Fechar">×</button><span class="panel-kicker">SEU ESPAÇO</span><h2>Personalizar</h2><p class="dialog-intro">Um nome para dar boas-vindas e sua moeda.</p><label>Como quer ser chamado(a)?<input name="name" placeholder="Ex.: Lucas" maxlength="30" /></label><div class="dialog-actions"><button type="button" class="outline-button cancel-dialog">Cancelar</button><button class="primary-button">Salvar</button></div></form></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
