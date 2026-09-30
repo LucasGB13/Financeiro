@@ -12,6 +12,7 @@ Aplicativo financeiro responsivo com login Google e dados sincronizados por cont
 - Planejamento mensal considera dois pagamentos quinzenais, contas e parcelas ativas, além de outras despesas e entradas lançadas. Contas marcadas como recorrentes continuam no cálculo mensal.
 - A conta PicPay pode ser marcada como cartão de limite reutilizável. Cada uso registrado entra como despesa do mês; os outros cartões continuam como contas comuns.
 - Contas podem ser editadas e marcadas como pagas por ciclo mensal; o painel avisa sobre vencimentos nos próximos sete dias e contas atrasadas.
+- O resumo mostra a renda antes das contas, o saldo livre, a quantidade de contas quitadas e o valor ainda pendente. Marcar uma conta como paga atualiza esses indicadores sem somar a fatura duas vezes.
 
 ## Configuração necessária antes de usar dados reais
 
