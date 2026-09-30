@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="17" fill="#c9ecd2"/><path d="M15 46V23h7v3c2-2 4-4 8-4 4 0 7 2 8 5 2-3 5-5 9-5 7 0 11 4 11 12v12h-8V35c0-4-1-6-5-6s-6 3-6 7v10h-8V35c0-4-1-6-5-6s-6 3-6 7v10z" fill="#286442"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Meu Financeiro">
+  <rect width="64" height="64" rx="18" fill="#173f2c"/>
+  <path d="M14 48V37a4 4 0 0 1 4-4h4v15zm13 0V29a4 4 0 0 1 4-4h4v23zm13 0V21a4 4 0 0 1 4-4h4v31z" fill="#b7e4c1"/>
+  <path d="m13 28 12-9 9 4 16-13" fill="none" stroke="#f3c879" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <path d="M43 10h7v7" fill="none" stroke="#f3c879" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <circle cx="15" cy="49" r="2.5" fill="#f3c879"/>
+</svg>
