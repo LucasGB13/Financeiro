@@ -11,6 +11,7 @@ Aplicativo financeiro responsivo com login Google e dados sincronizados por cont
 - Configuração pública do cliente em `config.js`. A URL do projeto e a chave `anon`/`publishable` podem ser expostas no front-end; as políticas RLS são obrigatórias.
 - Planejamento mensal considera dois pagamentos quinzenais, contas e parcelas ativas, além de outras despesas e entradas lançadas. Contas marcadas como recorrentes continuam no cálculo mensal.
 - A conta PicPay pode ser marcada como cartão de limite reutilizável. Cada uso registrado entra como despesa do mês; os outros cartões continuam como contas comuns.
+- Contas podem ser editadas e marcadas como pagas por ciclo mensal; o painel avisa sobre vencimentos nos próximos sete dias e contas atrasadas.
 
 ## Configuração necessária antes de usar dados reais
 
