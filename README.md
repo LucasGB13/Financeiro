@@ -33,7 +33,7 @@ Hospede a pasta como site estático em HTTPS. GitHub Pages, Cloudflare Pages e N
 
 ## Privacidade e dados
 
-Cada tabela guarda `user_id` e aplica Row Level Security para que a pessoa autenticada só consiga ler e alterar linhas com seu próprio ID. Não compartilhe a mesma conta Google entre os dois usuários. Este aplicativo não importa automaticamente dados do protótipo anterior guardado no navegador; esses dados permanecem naquele dispositivo e precisam ser recadastrados ou importados após a configuração.
+Cada tabela guarda `user_id` e aplica Row Level Security para que a pessoa autenticada só consiga ler e alterar linhas com seu próprio ID. Não compartilhe a mesma conta Google entre os dois usuários. Se o navegador encontrar dados do protótipo antigo, o aplicativo pergunta antes de copiar esses dados para a conta Google conectada; a cópia local não é apagada.
 
 ## Modo local antigo
 
