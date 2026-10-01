@@ -13,6 +13,7 @@ Aplicativo financeiro responsivo com login Google e dados sincronizados por cont
 - A conta PicPay pode ser marcada como cartão de limite reutilizável. Cada uso registrado entra como despesa do mês; os outros cartões continuam como contas comuns.
 - Contas podem ser editadas e marcadas como pagas por ciclo mensal; o painel avisa sobre vencimentos nos próximos sete dias e contas atrasadas.
 - O resumo mostra a renda antes das contas, o saldo livre, a quantidade de contas quitadas e o valor ainda pendente. Marcar uma conta como paga atualiza esses indicadores sem somar a fatura duas vezes.
+- O saldo real parte de um valor inicial informado pela pessoa e muda com despesas/entradas registradas e confirmações de salário nos dias 5 e 20; a renda prevista continua separada do dinheiro efetivamente recebido.
 
 ## Configuração necessária antes de usar dados reais
 
